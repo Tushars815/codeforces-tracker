@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import {
   selectApiFetched,
   selectSubmissionList,
@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import Sidebar from "./Sidebar";
-import { drawerWidth } from "@/src/theme";
+import Heatmap from "../ui/Heatmap";
 
 const Dashboard = () => {
   const [open, setOpen] = React.useState(true);
@@ -29,19 +29,17 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Sheet>
-        <SheetTrigger>
-          <button>right</button>
-        </SheetTrigger>
-        <SheetContent side="right">
-          <Sidebar />
-        </SheetContent>
-      </Sheet>
-      <div className={`w-${100% - ${drawerWidth}px} mx-auto`}>
-        <h1 className="text-center text-lg">
-          uwb,sdcaoispc'aisxasckdc dcioelbukneddwecderg4wttvwrtweucebiucdwodiucn
-          cwuidjknscbdsoc9uibwdveiuvbqpwscbasdfghjkwertyuisdfghjkxcvbnsertyurdftvgybhunvw
-        </h1>
+      <nav className="flex flex-row justify-end">
+        <Sheet>
+          <SheetTrigger>right</SheetTrigger>
+          <SheetContent side="right">
+            <Sidebar />
+          </SheetContent>
+        </Sheet>
+      </nav>
+
+      <div className="m-auto p-2 w-9/12">
+        <Heatmap drawerOpen={true} />
       </div>
     </div>
   );
@@ -50,10 +48,21 @@ const Dashboard = () => {
 const DashboardWrapper = () => {
   const apiFetched = useSelector(selectApiFetched);
   const SubmissionList = useSelector(selectSubmissionList);
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (apiFetched === false || SubmissionList.length === 0) {
+  //     navigate("/");
+  //   }
+  // }, [apiFetched, SubmissionList]);
+
+  // if (apiFetched === false || SubmissionList.length === 0) {
+  //   return null;
+  // }
+  // return <Dashboard />;
   return (
     <>
       {apiFetched === false || SubmissionList.length === 0 ? (
-        redirect("/")
+        <Navigate to="/" />
       ) : (
         <Dashboard />
       )}

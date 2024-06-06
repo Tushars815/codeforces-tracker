@@ -4,6 +4,7 @@ import "./App.css";
 import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/ErrorPage";
 import DashboardWrapper from "./components/Dashboard";
+import Sidebar from "./components/Dashboard/Sidebar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
