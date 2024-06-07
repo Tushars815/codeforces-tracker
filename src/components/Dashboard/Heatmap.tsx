@@ -6,6 +6,15 @@ import { SubmissionType, yearListType, QuestionMapDateType } from "../../types";
 import getDate from "../../utils/getDate";
 import { selectSubmissionList } from "../../reducers/slices/FetchedDataSlice";
 import dateFormat from "dateformat";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectLabel,
+//   SelectTrigger,
+//   SelectValue,
+// } from "../ui/select";
 
 const prepareData = (SubmissionList: SubmissionType[]) => {
   const LastSubmissionYear = getDate(
@@ -78,6 +87,8 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
   const [year, setYear] = React.useState(yearList[yearList.length - 1].value);
   const [open, setOpen] = React.useState(false);
   const QuestionListYear = filterData(QuestionMap, year);
+  console.log(yearList);
+
   const [dialogQuestionList, setDialogQuestionList] =
     React.useState<QuestionMapDateType>(
       QuestionListYear[QuestionListYear.length - 1]
@@ -100,6 +111,25 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
         <h6>
           Number of Submissions in {year} : {numberOfSubmissions}
         </h6>
+        {/* <Select>
+          <SelectTrigger className="w-[280px]">
+            <SelectValue placeholder="Select a timezone" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
+            <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
+            <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
+            <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
+            <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
+            <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
+          </SelectContent>
+        </Select> */}
+
+        {/* <Select
+          options={yearList}
+          defaultValue={yearList[yearList.length - 1]}
+          onChange={(options) => setYear(options!.value)}
+        ></Select> */}
       </div>
       <div>
         <CalendarHeatmap

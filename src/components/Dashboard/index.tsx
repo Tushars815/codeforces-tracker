@@ -14,7 +14,11 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import Sidebar from "./Sidebar";
-import Heatmap from "../ui/Heatmap";
+import Heatmap from "./Heatmap";
+import Radar from "./Radar";
+import Pie from "./Pie";
+import Statistics from "./Statistics";
+import UnsolvedQuestions from "./UnsolvedQuestions";
 
 const Dashboard = () => {
   const [open, setOpen] = React.useState(true);
@@ -41,6 +45,14 @@ const Dashboard = () => {
       <div className="m-auto p-2 w-9/12">
         <Heatmap drawerOpen={true} />
       </div>
+      <div className="grid grid-cols-3">
+        <Radar />
+        <Pie />
+      </div>
+      <div className="mx-auto">
+        <Statistics />
+      </div>
+      <UnsolvedQuestions />
     </div>
   );
 };
