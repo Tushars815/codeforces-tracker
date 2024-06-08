@@ -6,15 +6,10 @@ import { SubmissionType, yearListType, QuestionMapDateType } from "../../types";
 import getDate from "../../utils/getDate";
 import { selectSubmissionList } from "../../reducers/slices/FetchedDataSlice";
 import dateFormat from "dateformat";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectGroup,
-//   SelectItem,
-//   SelectLabel,
-//   SelectTrigger,
-//   SelectValue,
-// } from "../ui/select";
+import Select from "react-select";
+import { Tooltip } from "react-tooltip";
+import "react-calendar-heatmap/dist/styles.css";
+import Drawer from "./drawer";
 
 const prepareData = (SubmissionList: SubmissionType[]) => {
   const LastSubmissionYear = getDate(
@@ -51,7 +46,7 @@ const prepareData = (SubmissionList: SubmissionType[]) => {
  * The given function filters out the data from the hashmap and returns
  *  an array of all the submission sorted by date for the given year
  *
- * @param QuestionMap Hash Mop containing all question with key as dates
+ * @param QuestionMap Hash Map containing all question with key as dates
  * @param year current year to filter the data to be fed into the heatmap
  */
 const filterData = (
@@ -87,16 +82,15 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
   const [year, setYear] = React.useState(yearList[yearList.length - 1].value);
   const [open, setOpen] = React.useState(false);
   const QuestionListYear = filterData(QuestionMap, year);
-  console.log(yearList);
 
   const [dialogQuestionList, setDialogQuestionList] =
     React.useState<QuestionMapDateType>(
       QuestionListYear[QuestionListYear.length - 1]
     );
 
-  //   React.useEffect(() => {
-  //     ReactTooltip.rebuild();
-  //   }, [year, drawerOpen]);
+  // React.useEffect(() => {
+  //   Tooltip.rebuild();
+  // }, [year, drawerOpen]);
 
   // getting the start and end date for the selected year
   const Dates = getYearDate(year);
@@ -105,31 +99,20 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
   QuestionListYear.forEach(({ questions }) => {
     numberOfSubmissions += questions.length;
   });
+
   return (
     <div>
-      <div>
+      <div className="flex flex-row w-full justify-between">
         <h6>
           Number of Submissions in {year} : {numberOfSubmissions}
         </h6>
-        {/* <Select>
-          <SelectTrigger className="w-[280px]">
-            <SelectValue placeholder="Select a timezone" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
-            <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
-            <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
-            <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
-            <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
-            <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
-          </SelectContent>
-        </Select> */}
 
-        {/* <Select
+        <Select
+          className="w-48"
           options={yearList}
           defaultValue={yearList[yearList.length - 1]}
           onChange={(options) => setYear(options!.value)}
-        ></Select> */}
+        ></Select>
       </div>
       <div>
         <CalendarHeatmap
@@ -143,23 +126,27 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
             const count = Math.min(4, Math.ceil(value.questions.length / 4));
             return `color-github-${count}`;
           }}
-          //   tooltipDataAttrs={(value) => {
-          //     if (value && value?.date && value?.questions) {
-          //       return {
-          //         "data-tip": `
-          //             ${value.questions.length} Submissions on
-          //             ${dateFormat(value.date, " mmm dS, yyyy")}`,
-          //       };
-          //     } else return {};
-          //   }}
-          onClick={(value) => {
+          tooltipDataAttrs={(value: QuestionMapDateType) => {
+            if (value && value?.date && value?.questions) {
+              console.log(value);
+
+              return {
+                "data-tip": `
+                  ${value.questions.length} Submissions on
+                  ${dateFormat(value.date, " mmm dS, yyyy")}`,
+              };
+            } else return {};
+          }}
+          onClick={(value: any) => {
             if (value && value.questions) {
               setOpen(true);
-              setDialogQuestionList(value as QuestionMapDateType);
+              setDialogQuestionList(value);
             }
           }}
         />
+        <Tooltip />
       </div>
+      <Drawer open={open} setOpen={setOpen} dialogData={dialogQuestionList} />
     </div>
   );
 };

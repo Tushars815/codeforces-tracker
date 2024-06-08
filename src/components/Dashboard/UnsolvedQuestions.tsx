@@ -29,7 +29,7 @@ const UnsolvedQuestions = () => {
   const questionList = prepareData(useSelector(selectQuestionMap));
   if (toggle) questionList.sort((a, b) => (a.rating > b.rating ? 1 : -1));
   return (
-    <div className="grid grid-cols-1">
+    <div className="grid grid-cols-1 p-4">
       <h1>Unsolved Questions</h1>
       <Separator />
       <div className="flex flex-wrap gap-2">
