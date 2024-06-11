@@ -10,6 +10,7 @@ import Select from "react-select";
 import { Tooltip } from "react-tooltip";
 import "react-calendar-heatmap/dist/styles.css";
 import Drawer from "./drawer";
+import "react-tooltip/dist/react-tooltip.css";
 
 const prepareData = (SubmissionList: SubmissionType[]) => {
   const LastSubmissionYear = getDate(
@@ -131,9 +132,10 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
               console.log(value);
 
               return {
-                "data-tip": `
-                  ${value.questions.length} Submissions on
-                  ${dateFormat(value.date, " mmm dS, yyyy")}`,
+                "data-tooltip-id": "tooltip",
+                "data-tooltip-content": `${
+                  value.questions.length
+                } Submissions on ${dateFormat(value.date, "mmm dS, yyyy")}`,
               };
             } else return {};
           }}
@@ -144,7 +146,7 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
             }
           }}
         />
-        <Tooltip />
+        <Tooltip id="tooltip" />
       </div>
       <Drawer open={open} setOpen={setOpen} dialogData={dialogQuestionList} />
     </div>

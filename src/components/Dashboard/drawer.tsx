@@ -70,7 +70,7 @@ const QuestionDialog: React.FC<AppProps> = ({ open, setOpen, dialogData }) => {
       >
         Open dialog
       </Button> */}
-      {console.log(dialogData)}
+      {/* {console.log(dialogData)} */}
       <Transition appear show={open}>
         <Dialog
           as="div"
