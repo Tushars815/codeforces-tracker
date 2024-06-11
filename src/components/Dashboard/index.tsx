@@ -19,6 +19,7 @@ import Radar from "./Radar";
 import Pie from "./Pie";
 import Statistics from "./Statistics";
 import UnsolvedQuestions from "./UnsolvedQuestions";
+import Graph from "./Graph";
 
 const Dashboard = () => {
   const [open, setOpen] = React.useState(true);
@@ -41,7 +42,7 @@ const Dashboard = () => {
           </SheetContent>
         </Sheet>
       </nav>
-
+      <Graph />
       <div className="m-auto p-2 w-9/12">
         <Heatmap drawerOpen={true} />
       </div>

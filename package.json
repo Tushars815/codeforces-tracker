@@ -21,6 +21,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dateformat": "^5.0.3",
+    "highcharts": "^11.4.3",
+    "highcharts-react-official": "^3.2.1",
     "lucide-react": "^0.383.0",
     "react": "^18.3.1",
     "react-calendar-heatmap": "^1.9.0",
