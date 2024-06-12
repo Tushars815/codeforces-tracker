@@ -129,7 +129,6 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
           }}
           tooltipDataAttrs={(value: QuestionMapDateType) => {
             if (value && value?.date && value?.questions) {
-              console.log(value);
 
               return {
                 "data-tooltip-id": "tooltip",

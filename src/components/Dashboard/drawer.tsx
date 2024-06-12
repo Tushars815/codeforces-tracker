@@ -31,12 +31,6 @@ const prepareURL = (question: SubmissionType) => {
   return url;
 };
 
-// const TransitionDialog = React.forwardRef(function Transition(
-//   props: TransitionProps & { children?: React.ReactElement },
-//   ref: React.Ref<unknown>
-// ) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
 
 const getStringFromArray = (tags: string[]) => {
   let tagString = "  ";
@@ -47,24 +41,11 @@ const getStringFromArray = (tags: string[]) => {
 };
 
 const QuestionDialog: React.FC<AppProps> = ({ open, setOpen, dialogData }) => {
-  //   let [isOpen, setIsOpen] = useState(true);
   const { date, questions } = dialogData;
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
 
   const handleClose = () => {
     setOpen(false);
   };
-  //   function isOpen() {
-  //     setOpen(true);
-  //   }
-
-  //   function isClose() {
-  //     setOpen(false);
-  //   }
-
   return (
     <>
       <Drawer
@@ -73,7 +54,6 @@ const QuestionDialog: React.FC<AppProps> = ({ open, setOpen, dialogData }) => {
           setOpen(false);
         }}
       >
-        {/* <DrawerTrigger>Open</DrawerTrigger> */}
         <DrawerContent className="overscroll-contain max-h-[100vh]">
           <DrawerHeader>
             <DrawerTitle>Submission List</DrawerTitle>

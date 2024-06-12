@@ -28,7 +28,6 @@ const Sidebar = () => {
   const questionMap = useSelector(selectQuestionMap);
   const contestStats = getContestStats(constestInfo);
   const questionStats = getQuestionStats(questionMap);
-  // console.log(colorScheme[userInfo.rank]);
 
   return (
     <Sheet>
