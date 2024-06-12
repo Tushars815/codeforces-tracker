@@ -138,13 +138,15 @@ const Pie = () => {
   );
   return (
     <>
-      <div className="text-center">
-        <DonutChart data={RatingsList} />
-        <h6> Questions Rating - Pie Chart</h6>
-      </div>
-      <div className="text-center">
-        <DonutChart data={LevelsList} />
-        <h6> Questions Level - Pie Chart</h6>
+      <div className="lg:col-span-2 grid lg:grid-cols-2 grid-cols-1 z-0">
+        <div className="text-center ">
+          <DonutChart data={RatingsList} />
+          <h6> Questions Rating - Pie Chart</h6>
+        </div>
+        <div className="text-center ">
+          <DonutChart data={LevelsList} />
+          <h6> Questions Level - Pie Chart</h6>
+        </div>
       </div>
     </>
   );

@@ -29,14 +29,21 @@ const UnsolvedQuestions = () => {
   const questionList = prepareData(useSelector(selectQuestionMap));
   if (toggle) questionList.sort((a, b) => (a.rating > b.rating ? 1 : -1));
   return (
-    <div className="grid grid-cols-1 p-4">
-      <h1>Unsolved Questions</h1>
+    <div className="grid grid-cols-1 p-6">
+      <h1 className="font-Roboto font-semibold text-2xl m-2">
+        Unsolved Questions
+      </h1>
       <Separator />
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 p-2">
         {questionList.map((question) => {
           return (
             <h6 key={question.id}>
-              <a href={question!.url} target="_blank" key={question!.id}>
+              <a
+                className="font-semibold text-blue-600"
+                href={question!.url}
+                target="_blank"
+                key={question!.id}
+              >
                 {question!.id}
               </a>
             </h6>

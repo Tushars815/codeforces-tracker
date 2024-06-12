@@ -35,7 +35,7 @@ const Radar = () => {
   });
 
   return (
-    <div className="w-[100%] h-[20vw]">
+    <div className="w-[100%] min-h-[30vh]">
       <ResponsiveRadar
         data={data}
         keys={["value"]}

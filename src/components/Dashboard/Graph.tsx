@@ -59,6 +59,7 @@ const getHighchartOptions = (data: any) => ({
       name: "Rating",
       showInLegend: false,
       data: data,
+      zIndex: 2,
     },
   ],
   credits: {
@@ -72,7 +73,7 @@ const Graph = () => {
   const options = getHighchartOptions(data);
 
   return (
-    <div>
+    <div className="bg-white w-[75vw] mx-auto  h-auto transition-shadow shadow-lg hover:shadow-2xl">
       <HighchartsReact
         containerProps={{ className: "dimensions" }}
         highcharts={Highcharts}
