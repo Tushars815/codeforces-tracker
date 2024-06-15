@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { ChevronRight } from "lucide-react";
 import { Loader2 } from "lucide-react";
+import { toast, Toaster } from "sonner";
 
 type NextButtonProps = {
   handle: string;
@@ -38,6 +39,15 @@ const NextButton: React.FC<NextButtonProps> = ({
     const response = await makeRequest(handle, dispatch, navigate);
     if (response !== undefined) {
       setErrorText(response);
+      if (response.error) {
+        toast("Oops!!", {
+          description: response.comment,
+          action: {
+            label: "Got it!",
+            onClick: () => console.log("Undo"),
+          },
+        });
+      }
       setLoading(false);
     }
   };
@@ -97,6 +107,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="h-[35vh] content-end">
+          <Toaster />
           <div className="flex flex-row justify-center">
             <img className="w-[80%] h-auto" src={peeps} alt="hero_image" />
           </div>
