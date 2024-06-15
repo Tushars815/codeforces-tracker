@@ -17,3 +17,13 @@
     <a href="https://github.com/Tushars815/codeforces-tracker/issues">Request Feature</a>
   </p>
 </p>
+
+### Built With
+
+* [React](https://react.dev/learn/installation)
+* [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+* [TailwindCSS](https://tailwindcss.com/docs/installation)
+* [shadcn/ui](https://ui.shadcn.com/docs)
+
+Written in TypeScript ♥
+
