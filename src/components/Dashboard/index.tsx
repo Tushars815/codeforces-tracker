@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import {
@@ -15,8 +15,9 @@ import Graph from "./Graph";
 import img from "../../assets/CodeforcesLogo.svg";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-const Dashboard = () => {
-  const [open, setOpen] = React.useState(true);
+
+const Dashboard:FC = () => {
+  const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -62,17 +63,6 @@ const Dashboard = () => {
 const DashboardWrapper = () => {
   const apiFetched = useSelector(selectApiFetched);
   const SubmissionList = useSelector(selectSubmissionList);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (apiFetched === false || SubmissionList.length === 0) {
-  //     navigate("/");
-  //   }
-  // }, [apiFetched, SubmissionList]);
-
-  // if (apiFetched === false || SubmissionList.length === 0) {
-  //   return null;
-  // }
-  // return <Dashboard />;
   return (
     <>
       {apiFetched === false || SubmissionList.length === 0 ? (

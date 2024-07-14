@@ -82,7 +82,6 @@ interface QuestionMapWrapperType extends Problem {
   incorrectSubmissions: number;
 }
 
-// adding two extra properties to the SubmissionType for ease of use while calculating things with HashMap
 type QuestionMapType = Record<string, QuestionMapWrapperType>;
 
 export {

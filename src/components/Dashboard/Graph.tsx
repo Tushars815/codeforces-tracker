@@ -5,16 +5,24 @@ import HighchartsReact from "highcharts-react-official";
 import { selectContestData } from "../../reducers/slices/FetchedDataSlice";
 import { ContestListType } from "@/src/types";
 
-const prepareData = (ContestData: ContestListType[]) => {
+declare interface PointOptionsObject {
+  x: number;
+  y: number;
+  rank: number;
+  name: string;
+}
+
+const prepareData = (ContestData: ContestListType[]): PointOptionsObject[] => {
   return ContestData.map((contest: ContestListType) => ({
     x: contest.ratingUpdateTimeSeconds * 1000, // Convert to milliseconds for Highcharts
     y: contest.newRating,
+    rank: contest.rank,
     name: contest.contestName,
   }));
 };
 
 // Highcharts configuration options
-const getHighchartOptions = (data: any) => ({
+const getHighchartOptions = (data: PointOptionsObject[]) => ({
   chart: {
     type: "spline",
     scrollablePlotArea: {
@@ -36,6 +44,16 @@ const getHighchartOptions = (data: any) => ({
       text: "Rating",
     },
   },
+  tooltip: {
+    formatter: function (this: Highcharts.TooltipFormatterContextObject) {
+      const point = this.point.options as PointOptionsObject;
+      return `<b>${point.name}</b><br/>
+              Date: ${Highcharts.dateFormat("%e %b %Y", point.x)}<br/>
+              Rating: ${point.y}<br/>
+              Rank: ${point.rank}`;
+    },
+  },
+
   plotOptions: {
     series: {
       color: "rgb(255, 161, 22)",

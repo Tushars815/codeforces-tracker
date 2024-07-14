@@ -1,5 +1,6 @@
 import { QuestionMapType } from "../types";
 import { QUESTION_URL } from "../API";
+
 const getQuestionStats = (QuestionMap: QuestionMapType) => {
   const questionData = {
     QuestionsAttempted: 0,

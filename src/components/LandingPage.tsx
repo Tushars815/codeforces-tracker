@@ -31,7 +31,6 @@ const NextButton: React.FC<NextButtonProps> = ({
   setLoading,
 }) => {
   const dispatch = useDispatch();
-  //   const history = useHistory();
   const navigate = useNavigate();
 
   const handleClick = async () => {

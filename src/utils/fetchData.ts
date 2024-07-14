@@ -8,7 +8,6 @@ import {
   saveApiFetched,
 } from "../reducers/slices/FetchedDataSlice";
 import getQuestionMap from "./getQuestionMap";
-// import { useNavigate } from "react-router-dom";
 
 const makeRequest = async (handle: string, dispatch: any, navigate: any) => {
   const QuestionsData = await axios

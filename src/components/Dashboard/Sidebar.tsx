@@ -10,14 +10,7 @@ import { Separator } from "../ui/separator";
 import getContestStats from "../../utils/getContestStats";
 import getQuestionStats from "../../utils/getQuestionStats";
 import { URL } from "../../API";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import img from "../../assets/Codeforces.svg";
 import clsx from "clsx";
