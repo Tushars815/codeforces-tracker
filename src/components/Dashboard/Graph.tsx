@@ -86,7 +86,7 @@ const getHighchartOptions = (data: PointOptionsObject[]) => ({
 });
 
 const Graph = () => {
-  const ContestData = useSelector(selectContestData);
+  const ContestData: ContestListType[] = useSelector(selectContestData);
   const data = prepareData(ContestData);
   const options = getHighchartOptions(data);
 

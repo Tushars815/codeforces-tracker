@@ -42,7 +42,10 @@ const Sidebar = () => {
             className={`mt-6 mb-0.5 w-[200px] h-[200px] mx-auto rounded-full`}
             style={{ border: `6px solid ${colorScheme[userInfo.rank]}` }}
           ></img>
-          <h6 className="font-Roboto font-bold text-3xl text-center">{`${userInfo.firstName}  ${userInfo.lastName}`}</h6>
+
+          <h6 className="font-Roboto font-bold text-3xl text-center">{`${
+            userInfo.firstName !== undefined ? userInfo.firstName : "-"
+          }  ${userInfo.lastName !== undefined ? userInfo.lastName : "-"}`}</h6>
           <h6 className="font-Roboto text-xl text-gray-400 text-center">{`@${userInfo.handle}`}</h6>
           <div
             className={`w-full align-middle`}
@@ -61,12 +64,12 @@ const Sidebar = () => {
           <Separator />
           <div className="w-full flex justify-around ">
             <div className="text-lg text-center">
-              <h6>Contest</h6>
+              <h6>Contests</h6>
               <h6>{contestStats["Contest Given"]}</h6>
             </div>
             <Separator orientation="vertical" />
             <div className="text-lg text-center">
-              <h6> Question</h6>
+              <h6> Questions</h6>
               <h6>{questionStats.QuestionsSolved}</h6>
             </div>
           </div>

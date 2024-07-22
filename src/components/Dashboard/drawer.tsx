@@ -17,11 +17,12 @@ import {
   DrawerTrigger,
 } from "../ui/drawer";
 import { Button } from "../ui/button";
-interface AppProps {
+
+type DrawerProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dialogData: QuestionMapDateType;
-}
+};
 
 const prepareURL = (question: SubmissionType) => {
   const URL =
@@ -31,7 +32,6 @@ const prepareURL = (question: SubmissionType) => {
   return url;
 };
 
-
 const getStringFromArray = (tags: string[]) => {
   let tagString = "  ";
   tags.forEach((tag) => {
@@ -40,7 +40,11 @@ const getStringFromArray = (tags: string[]) => {
   return tagString.slice(0, tagString.length - 3).trim();
 };
 
-const QuestionDialog: React.FC<AppProps> = ({ open, setOpen, dialogData }) => {
+const QuestionDialog: React.FC<DrawerProps> = ({
+  open,
+  setOpen,
+  dialogData,
+}) => {
   const { date, questions } = dialogData;
 
   const handleClose = () => {

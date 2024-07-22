@@ -1,5 +1,7 @@
-import React from "react";
-import CalendarHeatmap from "react-calendar-heatmap";
+import React, { useState } from "react";
+import CalendarHeatmap, {
+  ReactCalendarHeatmapValue,
+} from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import { useSelector } from "react-redux";
 import { SubmissionType, yearListType, QuestionMapDateType } from "../../types";
@@ -77,21 +79,17 @@ const getYearDate = (year: number): Record<string, Date> => {
   return dateObject;
 };
 
-const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
+const Heatmap = () => {
   const SubmissionList = useSelector(selectSubmissionList);
   const { QuestionMap, yearList } = prepareData(SubmissionList);
-  const [year, setYear] = React.useState(yearList[yearList.length - 1].value);
-  const [open, setOpen] = React.useState(false);
+  const [year, setYear] = useState(yearList[yearList.length - 1].value);
+  const [open, setOpen] = useState(false);
   const QuestionListYear = filterData(QuestionMap, year);
 
   const [dialogQuestionList, setDialogQuestionList] =
-    React.useState<QuestionMapDateType>(
+    useState<QuestionMapDateType>(
       QuestionListYear[QuestionListYear.length - 1]
     );
-
-  // React.useEffect(() => {
-  //   Tooltip.rebuild();
-  // }, [year, drawerOpen]);
 
   // getting the start and end date for the selected year
   const Dates = getYearDate(year);
@@ -129,7 +127,6 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
           }}
           tooltipDataAttrs={(value: QuestionMapDateType) => {
             if (value && value?.date && value?.questions) {
-
               return {
                 "data-tooltip-id": "tooltip",
                 "data-tooltip-content": `${
@@ -138,10 +135,10 @@ const Heatmap: React.FC<{ drawerOpen: boolean }> = ({ drawerOpen }) => {
               };
             } else return {};
           }}
-          onClick={(value: any) => {
-            if (value && value.questions) {
+          onClick={(value: ReactCalendarHeatmapValue<Date> | undefined) => {
+            if (value && (value as QuestionMapDateType).questions) {
               setOpen(true);
-              setDialogQuestionList(value);
+              setDialogQuestionList(value as QuestionMapDateType);
             }
           }}
         />

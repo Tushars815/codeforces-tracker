@@ -16,17 +16,7 @@ import img from "../../assets/CodeforcesLogo.svg";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
-const Dashboard:FC = () => {
-  const [open, setOpen] = useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+const Dashboard = () => {
   return (
     <>
       <div className="relative flex flex-col space-y-24 bg-hero">
@@ -44,7 +34,7 @@ const Dashboard:FC = () => {
             <Graph />
           </div>
           <div className="m-auto p-4 w-9/12 bg-white transition-shadow shadow-lg hover:shadow-2xl">
-            <Heatmap drawerOpen={true} />
+            <Heatmap />
           </div>
           <div className="grid lg:grid-cols-3 grid-cols-1">
             <Radar />
